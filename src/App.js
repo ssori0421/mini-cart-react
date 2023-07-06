@@ -6,7 +6,7 @@ import BackDrop from './components/BackDrop';
 import getProductData from './api/getProductData';
 
 function App() {
-    const [productItems, setProductItems] = useState([]);
+    const [productItems, setProductItems] = useState();
     const [cartItems, setCartItems] = useState([]);
     const [isCartOpen, setIsCartOpen] = useState(false);
 
@@ -47,14 +47,16 @@ function App() {
                         id="product-card-grid"
                         className="grid gap-4 auto-cols-fr grid-cols-2 md:grid-cols-4"
                     >
-                        <ProductList productItems={productItems} />
+                        {productItems ? (
+                            <ProductList productItems={productItems} />
+                        ) : (
+                            <h1>상품이 없습니다.</h1>
+                        )}
                     </div>
                 </section>
             </div>
             {isCartOpen && <BackDrop onClickToggleCart={toggleCart} />}
             <aside className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
-                {/* 장바구니의 가시성은 아래 div의 (id="shopping-cart") class명으로 제어합니다. 
-          translate-x-full: 장바구니 닫힘 translate-x-0: 장바구니 열림 */}
                 <section
                     className={`pointer-events-auto w-screen max-w-md transition ease-in-out duration-500 translate-x-${
                         isCartOpen ? '0' : 'full'
