@@ -102,7 +102,13 @@ function App() {
                             <div className="flex justify-between font-medium">
                                 <p>결제금액</p>
                                 <p className="font-bold" id="total-count">
-                                    0원
+                                    {cartItems
+                                        .reduce(
+                                            (acc, cur) =>
+                                                cur.price * cur.count + acc,
+                                            0
+                                        )
+                                        .toLocaleString() + `원`}
                                 </p>
                             </div>
                             <a
