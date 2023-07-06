@@ -48,14 +48,18 @@ function App() {
                         className="grid gap-4 auto-cols-fr grid-cols-2 md:grid-cols-4"
                     >
                         {productItems ? (
-                            <ProductList productItems={productItems} />
+                            <ProductList
+                                productItems={productItems}
+                                toggleCart={toggleCart}
+                                setCartItems={setCartItems}
+                            />
                         ) : (
                             <h1>상품이 없습니다.</h1>
                         )}
                     </div>
                 </section>
             </div>
-            {isCartOpen && <BackDrop onClickToggleCart={toggleCart} />}
+            {isCartOpen && <BackDrop toggleCart={toggleCart} />}
             <aside className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
                 <section
                     className={`pointer-events-auto w-screen max-w-md transition ease-in-out duration-500 translate-x-${

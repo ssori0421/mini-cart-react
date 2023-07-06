@@ -1,10 +1,14 @@
 import React from 'react';
 
-const ProductList = ({ productItems }) => {
+const ProductList = ({ productItems, toggleCart, setCartItems }) => {
+    const handleAddProduct = () => {
+        toggleCart();
+    };
+
     return (
         <>
             {productItems.map(({ id, name, imgSrc, price }) => (
-                <article key={id}>
+                <article key={id} onClick={handleAddProduct}>
                     <div className="rounded-lg overflow-hidden border-2 relative">
                         <img
                             src={imgSrc}
