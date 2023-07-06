@@ -99,7 +99,10 @@ function App() {
                             </div>
 
                             <div id="cart-list">
-                                <CartList cartItems={cartItems} />
+                                <CartList
+                                    cartItems={cartItems}
+                                    setCartItems={setCartItems}
+                                />
                             </div>
                         </div>
                         <div className="border-t border-gray-200 p-6">

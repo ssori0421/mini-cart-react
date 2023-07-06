@@ -1,9 +1,20 @@
 import React from 'react';
 
-const CartList = ({ cartItems }) => {
+const CartList = ({ cartItems, setCartItems }) => {
     if (!cartItems || cartItems.length === 0) {
         return <p>장바구니가 비어 있습니다.</p>;
     }
+
+    // 장바구니 상품 삭제 기능
+    const removeCartItem = (id) => {
+        const clickedRemoveItem = cartItems.find((item) => item.id === id);
+        // console.log(clickedRemoveItem);
+        const newCartItem = cartItems.filter(
+            (item) => item.id !== clickedRemoveItem.id
+        );
+        setCartItems(newCartItem);
+    };
+    console.log(removeCartItem);
 
     return (
         <ul className="divide-y divide-gray-200">
@@ -31,7 +42,12 @@ const CartList = ({ cartItems }) => {
                                 type="button"
                                 className="font-medium text-sky-400 hover:text-sky-500"
                             >
-                                <p className="remove-btn">삭제하기</p>
+                                <p
+                                    className="remove-btn"
+                                    onClick={() => removeCartItem(id)}
+                                >
+                                    삭제하기
+                                </p>
                             </button>
                         </div>
                     </div>
