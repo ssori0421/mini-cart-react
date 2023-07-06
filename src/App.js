@@ -52,6 +52,7 @@ function App() {
                                 productItems={productItems}
                                 toggleCart={toggleCart}
                                 setCartItems={setCartItems}
+                                cartItems={cartItems}
                             />
                         ) : (
                             <h1>상품이 없습니다.</h1>
@@ -62,8 +63,8 @@ function App() {
             {isCartOpen && <BackDrop toggleCart={toggleCart} />}
             <aside className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
                 <section
-                    className={`pointer-events-auto w-screen max-w-md transition ease-in-out duration-500 translate-x-${
-                        isCartOpen ? '0' : 'full'
+                    className={`pointer-events-auto w-screen max-w-md transition ease-in-out duration-500 ${
+                        isCartOpen ? 'translate-x-0' : 'translate-x-full'
                     }`}
                     id="shopping-cart"
                 >
@@ -85,7 +86,7 @@ function App() {
                                             stroke="currentColor"
                                         >
                                             <path
-                                                stroke-width="2"
+                                                strokeWidth="2"
                                                 d="M6 18L18 6M6 6l12 12"
                                             ></path>
                                         </svg>
