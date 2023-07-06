@@ -22,7 +22,7 @@ const ProductList = ({ productItems }) => {
                     </div>
                     <h3 className="mt-4 text-gray-700">{name}</h3>
                     <p className="mt-1 text-lg font-semibold text-gray-900">
-                        {price}
+                        {price.toLocaleString()}
                     </p>
                 </article>
             ))}
