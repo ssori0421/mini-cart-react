@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import CartList from './components/CartList';
 import ProductList from './components/ProductList';
 import BackDrop from './components/BackDrop';
+import getProductData from './api/getProductData';
 
 function App() {
     const [productItems, setProductItems] = useState([]);
@@ -12,6 +13,14 @@ function App() {
     const toggleCart = () => {
         setIsCartOpen((prev) => !prev);
     };
+
+    useEffect(() => {
+        const fetchProductData = async () => {
+            const result = await getProductData(); // getProductData 비동기 호출로 result를 가져와서
+            setProductItems(result); // setState로 ProductItems를 업데이트하는 fetchProductData 함수를
+        };
+        fetchProductData(); // 호출
+    }, []);
 
     return (
         <div className="relative min-h-screen">
