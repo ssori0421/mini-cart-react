@@ -2,10 +2,12 @@ import { useState } from 'react';
 import './App.css';
 import CartList from './components/CartList';
 import ProductList from './components/ProductList';
+import BackDrop from './components/BackDrop';
 
 function App() {
     const [productItems, setProductItems] = useState([]);
     const [cartItems, setCartItems] = useState([]);
+    const [isCartOpen, setIsCartOpen] = useState(false);
 
     return (
         <div className="relative min-h-screen">
@@ -35,12 +37,7 @@ function App() {
                     </div>
                 </section>
             </div>
-            {/* backdrop의 가시성은 hidden 속성으로 제어합니다.  */}
-            <div
-                id="backdrop"
-                className="absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
-                hidden
-            ></div>
+            {isCartOpen && <BackDrop />}
             <aside className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
                 {/* 장바구니의 가시성은 아래 div의 (id="shopping-cart") class명으로 제어합니다. 
           translate-x-full: 장바구니 닫힘 translate-x-0: 장바구니 열림 */}
