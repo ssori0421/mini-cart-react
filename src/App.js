@@ -9,6 +9,10 @@ function App() {
     const [cartItems, setCartItems] = useState([]);
     const [isCartOpen, setIsCartOpen] = useState(false);
 
+    const toggleCart = () => {
+        setIsCartOpen((prev) => !prev);
+    };
+
     return (
         <div className="relative min-h-screen">
             <div className="max-w-7xl mx-auto px-6 py-12">
@@ -17,6 +21,7 @@ function App() {
                     <button
                         id="open-cart-btn"
                         className="fill-gray-400 hover:fill-gray-500"
+                        onClick={toggleCart}
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -37,12 +42,14 @@ function App() {
                     </div>
                 </section>
             </div>
-            {isCartOpen && <BackDrop />}
+            {isCartOpen && <BackDrop onClickToggleCart={toggleCart} />}
             <aside className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
                 {/* 장바구니의 가시성은 아래 div의 (id="shopping-cart") class명으로 제어합니다. 
           translate-x-full: 장바구니 닫힘 translate-x-0: 장바구니 열림 */}
                 <section
-                    className="pointer-events-auto w-screen max-w-md transition ease-in-out duration-500 translate-x-full"
+                    className={`pointer-events-auto w-screen max-w-md transition ease-in-out duration-500 translate-x-${
+                        isCartOpen ? '0' : 'full'
+                    }`}
                     id="shopping-cart"
                 >
                     <div className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
@@ -53,6 +60,7 @@ function App() {
                                     <button
                                         type="button"
                                         className="-m-2 p-2 text-gray-400 hover:text-gray-500"
+                                        onClick={toggleCart}
                                     >
                                         <svg
                                             id="close-cart-btn"
