@@ -1,14 +1,28 @@
 import React from 'react';
 
-const ProductList = ({ productItems, toggleCart, setCartItems }) => {
-    const handleAddProduct = () => {
+const ProductList = ({ productItems, toggleCart, setCartItems, cartItems }) => {
+    const handleAddProduct = (id) => {
+        const clickedItem = productItems.find((item) => item.id === id);
+        // 장바구니에 처음 담는 아이템인지 확인
+        // checkedIdx === -1 : 처음 담는 아이템
+        // checkedIdx !== -1 : 중복 아이템
+        const checkedIdx = cartItems.findIndex(
+            (item) => item.id === clickedItem.id
+        );
+        if (checkedIdx === -1) {
+            const newCartItems = [...cartItems, { ...clickedItem, count: 1 }];
+            setCartItems(newCartItems);
+        } else {
+            const newCartItems = [...cartItems];
+            newCartItems[checkedIdx].count += 1;
+        }
         toggleCart();
     };
 
     return (
         <>
             {productItems.map(({ id, name, imgSrc, price }) => (
-                <article key={id} onClick={handleAddProduct}>
+                <article key={id} onClick={() => handleAddProduct(id)}>
                     <div className="rounded-lg overflow-hidden border-2 relative">
                         <img
                             src={imgSrc}
