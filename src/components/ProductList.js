@@ -1,6 +1,8 @@
 import React from 'react';
 
 const ProductList = ({ productItems, toggleCart, setCartItems, cartItems }) => {
+    // 장바구니에 상품 추가 기능
+    // onClick 함수로부터 id를 넘겨 받아서
     const handleAddProduct = (id) => {
         const clickedItem = productItems.find((item) => item.id === id);
         // 장바구니에 처음 담는 아이템인지 확인
@@ -22,6 +24,7 @@ const ProductList = ({ productItems, toggleCart, setCartItems, cartItems }) => {
     return (
         <>
             {productItems.map(({ id, name, imgSrc, price }) => (
+                // handleAddProduct 이벤트 핸들러에 id 넘겨줌
                 <article key={id} onClick={() => handleAddProduct(id)}>
                     <div className="rounded-lg overflow-hidden border-2 relative">
                         <img
