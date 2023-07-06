@@ -14,6 +14,10 @@ function App() {
         setIsCartOpen((prev) => !prev);
     };
 
+    const totalCount = cartItems
+        .reduce((acc, cur) => cur.price * cur.count + acc, 0)
+        .toLocaleString();
+
     useEffect(() => {
         const fetchProductData = async () => {
             const result = await getProductData(); // getProductData 비동기 호출로 result를 가져와서
@@ -102,13 +106,7 @@ function App() {
                             <div className="flex justify-between font-medium">
                                 <p>결제금액</p>
                                 <p className="font-bold" id="total-count">
-                                    {cartItems
-                                        .reduce(
-                                            (acc, cur) =>
-                                                cur.price * cur.count + acc,
-                                            0
-                                        )
-                                        .toLocaleString() + `원`}
+                                    {totalCount}원
                                 </p>
                             </div>
                             <a
