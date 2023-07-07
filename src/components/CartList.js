@@ -16,15 +16,23 @@ const CartList = ({ cartItems, setCartItems }) => {
     };
 
     const handleClickDecreaseBtn = (idx) => {
+        const MIN_COUNT = 1;
         const newCartItems = [...cartItems];
-        newCartItems[idx].count -= 1;
-        setCartItems(newCartItems);
+        if (newCartItems[idx].count > MIN_COUNT) {
+            newCartItems[idx].count -= 1;
+            setCartItems(newCartItems);
+        } else {
+            alert('장바구니에 담을 수 있는 최소 수량은 1개 입니다.');
+        }
     };
 
     const handleClickIncreaseBtn = (idx) => {
+        const MAX_COUNT = 10;
         const newCartItems = [...cartItems];
-        newCartItems[idx].count += 1;
-        setCartItems(newCartItems);
+        if (newCartItems[idx].count < MAX_COUNT) {
+            newCartItems[idx].count += 1;
+            setCartItems(newCartItems);
+        } else alert('장바구니에 담을 수 있는 최대 수량은 10개 입니다.');
     };
 
     return (
