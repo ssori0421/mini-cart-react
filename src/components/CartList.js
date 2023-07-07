@@ -14,11 +14,22 @@ const CartList = ({ cartItems, setCartItems }) => {
         );
         setCartItems(newCartItem);
     };
-    console.log(removeCartItem);
+
+    const handleClickDecreaseBtn = (idx) => {
+        const newCartItems = [...cartItems];
+        newCartItems[idx].count -= 1;
+        setCartItems(newCartItems);
+    };
+
+    const handleClickIncreaseBtn = (idx) => {
+        const newCartItems = [...cartItems];
+        newCartItems[idx].count += 1;
+        setCartItems(newCartItems);
+    };
 
     return (
         <ul className="divide-y divide-gray-200">
-            {cartItems.map(({ id, name, imgSrc, price, count }) => (
+            {cartItems.map(({ id, name, imgSrc, price, count }, idx) => (
                 <li className="flex py-6" key={id}>
                     <div className="h-24 w-24 overflow-hidden rounded-md border border-gray-200">
                         <img src={imgSrc} alt={name} />
@@ -34,9 +45,19 @@ const CartList = ({ cartItems, setCartItems }) => {
                         </div>
                         <div className="flex flex-1 items-end justify-between">
                             <div className="flex text-gray-500">
-                                <button className="decrease-btn">-</button>
+                                <button
+                                    className="decrease-btn"
+                                    onClick={() => handleClickDecreaseBtn(idx)}
+                                >
+                                    -
+                                </button>
                                 <div className="mx-2 font-bold">{count}개</div>
-                                <button className="increase-btn">+</button>
+                                <button
+                                    className="increase-btn"
+                                    onClick={() => handleClickIncreaseBtn(idx)}
+                                >
+                                    +
+                                </button>
                             </div>
                             <button
                                 type="button"
