@@ -8,7 +8,6 @@ const CartList = ({ cartItems, setCartItems }) => {
     // 장바구니 상품 삭제 기능
     const removeCartItem = (id) => {
         const clickedRemoveItem = cartItems.find((item) => item.id === id);
-        // console.log(clickedRemoveItem);
         const newCartItem = cartItems.filter(
             (item) => item.id !== clickedRemoveItem.id
         );
