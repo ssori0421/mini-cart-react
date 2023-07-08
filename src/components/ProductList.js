@@ -17,6 +17,7 @@ const ProductList = ({ productItems, toggleCart, setCartItems, cartItems }) => {
         } else {
             const newCartItems = [...cartItems];
             newCartItems[checkedIdx].count += 1;
+            setCartItems(newCartItems);
         }
         toggleCart();
     };
