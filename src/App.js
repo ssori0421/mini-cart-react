@@ -18,6 +18,10 @@ function App() {
         .reduce((acc, cur) => cur.price * cur.count + acc, 0)
         .toLocaleString();
 
+    const saveToLocalStorage = () => {
+        localStorage.setItem('cartState', JSON.stringify(cartItems));
+    };
+
     useEffect(() => {
         const fetchProductData = async () => {
             const result = await getProductData(); // getProductData 비동기 호출로 result를 가져와서
@@ -116,6 +120,7 @@ function App() {
                                 id="payment-btn"
                                 href="./"
                                 className="flex items-center justify-center rounded-md border border-transparent bg-sky-400 px-6 py-3 mt-6 font-medium text-white shadow-sm hover:bg-sky-500"
+                                onClick={saveToLocalStorage}
                             >
                                 결제하기
                             </a>
