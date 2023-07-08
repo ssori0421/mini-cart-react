@@ -6,8 +6,10 @@ import BackDrop from './components/BackDrop';
 import getProductData from './api/getProductData';
 
 function App() {
+    const localCartState = localStorage.getItem('cartState');
+    const iniitialCartItem = localCartState ? JSON.parse(localCartState) : [];
     const [productItems, setProductItems] = useState();
-    const [cartItems, setCartItems] = useState([]);
+    const [cartItems, setCartItems] = useState(iniitialCartItem);
     const [isCartOpen, setIsCartOpen] = useState(false);
 
     const toggleCart = () => {
